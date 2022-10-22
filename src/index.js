@@ -1,5 +1,6 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
 import App from "./App";
 import { NativeBaseProvider, extendTheme } from "native-base";
 import reportWebVitals from "./reportWebVitals";
@@ -11,12 +12,12 @@ const theme = extendTheme({
   },
 });
 
-ReactDOM.render(
-  <React.StrictMode>
+const rootElement = document.getElementById("root");
+createRoot(rootElement).render(
+  <StrictMode>
     <NativeBaseProvider theme={theme}>
       <App />
     </NativeBaseProvider>
-  </React.StrictMode>,
-  document.getElementById("root")
+  </StrictMode>
 );
 reportWebVitals();
