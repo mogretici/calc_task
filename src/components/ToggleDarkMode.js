@@ -16,9 +16,15 @@ function ToggleDarkMode() {
         }}
       >
         {colorMode === "light" ? (
-          <BedtimeOutlinedIcon fontSize="large" sx={{ color: "#373737CC" }} />
+          <BedtimeOutlinedIcon
+            fontSize="large"
+            sx={{ color: "rgba(55, 55, 55, 0.8)" }}
+          />
         ) : (
-          <LightModeOutlinedIcon fontSize="large" sx={{ color: "#E5E5E5" }} />
+          <LightModeOutlinedIcon
+            fontSize="large"
+            sx={{ color: "rgba(251, 251, 251, 1)" }}
+          />
         )}
       </IconButton>
     </HStack>

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { HStack, VStack, View } from "native-base";
 import { Button } from "react-bootstrap";
 import { useCalc } from "../context/CalcContext";
@@ -15,7 +15,13 @@ function Numbers({ colorMode }) {
     isOperator,
     setOperator,
     setIsOperator,
+    history,
+    setHistory,
+    combined,
+    setCombined,
   } = useCalc();
+  const [isResult, setIsResult] = useState(false);
+
   let fontColor =
     colorMode === "light" ? "rgba(55, 55, 55, 1)" : "rgba(251, 251, 251, 1)";
   let bgColor =
@@ -51,26 +57,118 @@ function Numbers({ colorMode }) {
     borderRadius: "40px",
     backgroundColor: bgColor,
   };
-  const handleNumber = (value) => {
-    if (value === ".") {
-      if (isOperator) {
-        if (num2.includes(".")) return;
-        setNum2(num2 + value);
-      } else {
-        if (num1.includes(".")) return;
-        setNum1(num1 + value);
+  useEffect(() => {
+    if (isOperator) {
+      setNum1(result);
+      setNum2(0);
+    }
+  }, [result]);
+
+  useEffect(() => {
+    handleFunction("AC");
+  }, []);
+
+  useEffect(() => {
+    if (isResult && num2 !== 0) {
+      if (history.length == 3) {
+        history.shift();
       }
-    } else if (num1 === 0) {
+      setHistory([
+        ...history,
+        {
+          id: history.length + 1,
+          combine: combined,
+          result: result,
+        },
+      ]);
+      setNum1(0);
+      setNum2(0);
+      setOperator("");
+      setIsOperator(false);
+      setCombined([]);
+    }
+  }, [isResult]);
+
+  const handleNumber = (value) => {
+    setIsResult(false);
+    if (isResult) {
       setNum1(value);
-    } else if (!isOperator) {
-      setNum1(num1 + "" + value);
-    } else if (isOperator && num2 === 0) {
-      setNum2(value);
-    } else if (isOperator) {
-      setNum2(num2 + "" + value);
+      setNum2(0);
+      setResult(0);
+      setOperator("");
+      setIsOperator(false);
+      setCombined([]);
+    }
+
+    if (result !== 0 && !isOperator) {
+      return;
+    }
+    if (!isOperator) {
+      if (num1 === 0) {
+        if (value === ".") {
+          setNum1("0.");
+        } else setNum1(value);
+      } else {
+        if (value === "." && num1.toString().includes(".")) {
+          return;
+        } else {
+          setNum1(num1 + "" + value);
+        }
+      }
+    } else {
+      if (num2 === 0) {
+        if (value === ".") {
+          setNum2("0.");
+        } else setNum2(value);
+      } else {
+        if (value === "." && num2.toString().includes(".")) {
+          return;
+        } else {
+          setNum2(num2 + "" + value);
+        }
+      }
+    }
+  };
+  const handleFunction = (value) => {
+    if (value === "AC") {
+      setNum1(0);
+      setNum2(0);
+      setResult(0);
+      setOperator("");
+      setIsOperator(false);
+      setHistory([]);
+      setCombined([]);
+    } else if (value === "+/-") {
+      if (!isOperator) {
+        setNum1(num1 * -1);
+      } else {
+        setNum2(num2 * -1);
+      }
+    } else if (value === "%") {
+      if (!isOperator) {
+        setNum1(num1 / 100);
+      } else {
+        setNum2(num2 / 100);
+      }
     }
   };
 
+  const handleResult = () => {
+    if (operator === "+") {
+      setResult(parseFloat(num1) + parseFloat(num2));
+    } else if (operator === "-") {
+      setResult(parseFloat(num1) - parseFloat(num2));
+    } else if (operator === "x") {
+      setResult(parseFloat(num1) * parseFloat(num2));
+    } else if (operator === "÷") {
+      setResult(parseFloat(num1) / parseFloat(num2));
+    }
+    if (combined.length !== 0) {
+      setCombined([...combined, operator + " " + num2 + " "]);
+    } else {
+      setCombined([num1 + " " + operator + " " + num2 + " "]);
+    }
+  };
   return (
     <div>
       <HStack>
@@ -94,7 +192,7 @@ function Numbers({ colorMode }) {
                   variant="link"
                   key={index}
                   onClick={() => {
-                    console.log(item);
+                    handleFunction(item);
                   }}
                 >
                   {item}
@@ -110,7 +208,6 @@ function Numbers({ colorMode }) {
                     variant="link"
                     style={btn}
                     onClick={() => {
-                      console.log(number);
                       handleNumber(number);
                     }}
                   >
@@ -126,7 +223,6 @@ function Numbers({ colorMode }) {
                     variant="link"
                     style={btn}
                     onClick={() => {
-                      console.log(number);
                       handleNumber(number);
                     }}
                   >
@@ -142,7 +238,6 @@ function Numbers({ colorMode }) {
                     variant="link"
                     style={btn}
                     onClick={() => {
-                      console.log(number);
                       handleNumber(number);
                     }}
                   >
@@ -170,7 +265,22 @@ function Numbers({ colorMode }) {
                 variant="link"
                 key={index}
                 onClick={() => {
-                  console.log(item);
+                  if (num1 === 0) {
+                    if (result !== 0) {
+                      setNum1(result);
+                      setNum2(0);
+                      setOperator(item);
+                      setIsOperator(true);
+                      setIsResult(false);
+                    } else return;
+                  }
+                  if (num1 !== 0 && num2 !== 0) {
+                    handleResult();
+                  }
+                  if (result !== 0) {
+                    setNum1(result);
+                    setNum2(0);
+                  }
                   setIsOperator(true);
                   setOperator(item);
                 }}
@@ -185,21 +295,10 @@ function Numbers({ colorMode }) {
               variant="link"
               style={btn}
               onClick={() => {
-                console.log("equal");
-
-                if (operator === "+") {
-                  setResult(parseFloat(num1) + parseFloat(num2));
-                }
-                if (operator === "-") {
-                  setResult(parseFloat(num1) - parseFloat(num2));
-                }
-                if (operator === "x") {
-                  setResult(parseFloat(num1) * parseFloat(num2));
-                }
-                if (operator === "÷") {
-                  setResult(parseFloat(num1) / parseFloat(num2));
-                }
-                console.log(result);
+                if (num2 === 0) return;
+                setIsOperator(false);
+                handleResult();
+                setIsResult(true);
               }}
             >
               =

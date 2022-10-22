@@ -1,5 +1,5 @@
 import { Box, VStack, useColorMode } from "native-base";
-import React, { useState } from "react";
+import React from "react";
 import Monitor from "./components/Monitor";
 import Numpad from "./components/Numpad";
 import { CalcProvider } from "./context/CalcContext";
