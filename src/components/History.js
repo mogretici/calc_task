@@ -36,7 +36,7 @@ function History({ colorMode }) {
         <Box
           sx={{
             width: 370,
-            height: 120,
+            height: 110,
             marginTop: 1,
             borderRadius: 7,
             p: 1,
@@ -51,8 +51,8 @@ function History({ colorMode }) {
               {history.map((item, index) => (
                 <div key={index}>
                   {item.combine !== 0 ? item.combine.join("") + " = " : ""}
-                  {item.result.toString().length > 10
-                    ? item.result.toPrecision(10)
+                  {item.result.toString().length > 5
+                    ? item.result.toPrecision(5)
                     : item.result}
                 </div>
               ))}

@@ -57,8 +57,8 @@ function Monitor({ colorMode }) {
                 =
               </Text>
               <Text fontSize={40} fontWeight={600}>
-                {result.toString().length > 10
-                  ? parseFloat(result).toPrecision(10)
+                {result.toString().length > 5
+                  ? parseFloat(result).toPrecision(5)
                   : parseFloat(result)}
               </Text>
             </HStack>

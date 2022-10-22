@@ -136,7 +136,6 @@ function Numbers({ colorMode }) {
       setResult(0);
       setOperator("");
       setIsOperator(false);
-      setHistory([]);
       setCombined([]);
     } else if (value === "+/-") {
       if (!isOperator) {
