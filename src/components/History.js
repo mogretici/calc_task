@@ -50,7 +50,9 @@ function History({ colorMode }) {
             <Text fontSize={20}>
               {history.map((item, index) => (
                 <div key={index}>
-                  {item.combine !== 0 ? item.combine.join("") + " = " : ""}
+                  {item.combine !== 0 && item.result !== ""
+                    ? item.combine.join("") + " = "
+                    : ""}
                   {item.result.toString().length > 5
                     ? item.result.toPrecision(5)
                     : item.result}

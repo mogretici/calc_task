@@ -10,10 +10,10 @@ function Monitor({ colorMode }) {
   return (
     <div>
       <Box justifyContent={"flex-start"} width={423} height={351}>
-        <HStack space={4} justifyContent={"flex-end"} padding={3}>
+        <HStack justifyContent={"flex-end"} padding={3}>
           <HStack
             justifyContent={"space-between"}
-            width={210}
+            width={260}
             paddingTop={30}
             paddingRight={3}
           >
