@@ -58,8 +58,8 @@ function History({ colorMode }) {
             p: 1,
             background:
               colorMode === "light"
-                ? "rgba(169, 220, 253, 0.2)"
-                : "rgba(0, 54, 97, 0.2)",
+                ? "rgba(169, 220, 253, 0.8)"
+                : "rgba(0, 54, 97, 0.6)",
           }}
         >
           <Center>
