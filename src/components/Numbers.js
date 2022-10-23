@@ -70,7 +70,7 @@ function Numbers({ colorMode }) {
 
   useEffect(() => {
     if (isResult && num2 !== 0) {
-      if (history.length == 3) {
+      if (history.length === 3) {
         history.shift();
       }
       setHistory([

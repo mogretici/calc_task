@@ -35,7 +35,7 @@ function Monitor({ colorMode }) {
                 }
                 paddingRight={10}
               >
-                {result === 0 && num1 != 0 ? parseFloat(num1) + " " : combined}
+                {result === 0 && num1 !== 0 ? parseFloat(num1) + " " : combined}
 
                 {operator}
 

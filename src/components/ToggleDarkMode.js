@@ -1,10 +1,6 @@
 import React from "react";
-import { HStack, useColorMode, Box, View } from "native-base";
-import LightModeOutlinedIcon from "@mui/icons-material/LightModeOutlined";
-import BedtimeOutlinedIcon from "@mui/icons-material/BedtimeOutlined";
-import IconButton from "@mui/material/IconButton";
+import { HStack, useColorMode, View } from "native-base";
 import SwitchSelector from "react-switch-selector";
-import { fontSize } from "@mui/system";
 import { ReactComponent as MoonIcon } from "../assets/moon.svg";
 import { ReactComponent as MoonDarkIcon } from "../assets/moonDark.svg";
 import { ReactComponent as SunIcon } from "../assets/sun.svg";
