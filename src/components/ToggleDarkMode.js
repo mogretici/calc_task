@@ -89,26 +89,6 @@ function ToggleDarkMode() {
 
   return (
     <HStack>
-      {/* <IconButton
-        aria-label="delete"
-        size="small"
-        onClick={() => {
-          toggleColorMode();
-        }}
-      >
-        {colorMode === "light" ? (
-          <BedtimeOutlinedIcon
-            fontSize="large"
-            sx={{ color: "rgba(55, 55, 55, 0.8)" }}
-          />
-        ) : (
-          <LightModeOutlinedIcon
-            fontSize="large"
-            sx={{ color: "rgba(251, 251, 251, 1)" }}
-          />
-        )}
-      </IconButton>
-       */}
       <View style={{ width: 122, height: 44 }}>
         <SwitchSelector
           onChange={onChange}
