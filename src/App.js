@@ -16,7 +16,7 @@ function App() {
             height={858}
             rounded="lg"
             overflow="hidden"
-            borderRadius="20"
+            borderRadius="40"
             style={
               colorMode === "light"
                 ? {

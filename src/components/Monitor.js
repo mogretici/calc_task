@@ -10,7 +10,7 @@ function Monitor({ colorMode }) {
   return (
     <div>
       <Box justifyContent={"flex-start"} width={423} height={351}>
-        <HStack justifyContent={"flex-end"} padding={3}>
+        <HStack justifyContent={"flex-end"} padding={5}>
           <HStack
             justifyContent={"space-between"}
             width={260}
@@ -22,7 +22,7 @@ function Monitor({ colorMode }) {
           </HStack>
         </HStack>
         <HStack>
-          <VStack justifyContent={"flex-end"} h={270}>
+          <VStack justifyContent={"flex-end"} h={260}>
             <HStack justifyContent={"flex-end"}>
               <Text
                 fontFamily={"Poppins, sans-serif"}
@@ -59,11 +59,13 @@ function Monitor({ colorMode }) {
                 fontWeight={600}
                 alignSelf={"center"}
                 fontFamily={"Poppins, sans-serif"}
+                paddingLeft={5}
               >
                 =
               </Text>
               <Text
                 fontSize={40}
+                fontStyle={"normal"}
                 fontWeight={600}
                 fontFamily={"Poppins, sans-serif"}
               >

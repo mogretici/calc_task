@@ -46,6 +46,7 @@ function ToggleDarkMode() {
       selectedBackgroundColor: "rgba(216, 238, 255, 1)",
       unSelectedBackgroundColor: "rgba(27, 106, 156, 1) ",
       innerHeight: 44,
+
       index: 0,
     },
     {
@@ -120,7 +121,7 @@ function ToggleDarkMode() {
           backgroundColor={colorMode === "light" ? "#A9DCFD" : "#1B6A9C"}
           optionBorderRadius={40}
           wrapperBorderRadius={40}
-          selectionIndicatorMargin={0}
+          selectionIndicatorMargin={-2}
         />
       </View>
     </HStack>
