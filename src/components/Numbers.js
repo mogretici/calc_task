@@ -25,7 +25,7 @@ function Numbers({ colorMode }) {
   let fontColor =
     colorMode === "light" ? "rgba(55, 55, 55, 1)" : "rgba(251, 251, 251, 1)";
   let bgColor =
-    colorMode === "light" ? "rgba(255, 255, 255, 0.3)" : "rgba(5, 5, 5, 0.3)";
+    colorMode === "light" ? "rgba(255, 255, 255, 0.3)" : "rgba(5, 5, 5, 0.4)";
 
   const btn = {
     textDecoration: "none",

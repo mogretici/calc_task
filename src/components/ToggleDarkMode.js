@@ -5,25 +5,43 @@ import BedtimeOutlinedIcon from "@mui/icons-material/BedtimeOutlined";
 import IconButton from "@mui/material/IconButton";
 import SwitchSelector from "react-switch-selector";
 import { fontSize } from "@mui/system";
+import { ReactComponent as MoonIcon } from "../assets/moon.svg";
+import { ReactComponent as MoonDarkIcon } from "../assets/moonDark.svg";
+import { ReactComponent as SunIcon } from "../assets/sun.svg";
+import { ReactComponent as SunDarkIcon } from "../assets/sunDark.svg";
 
 function ToggleDarkMode() {
   const { colorMode, toggleColorMode } = useColorMode();
   const options = [
     {
-      label: (
-        <LightModeOutlinedIcon
-          style={{ fontSize: 30 }}
-          sx={
-            colorMode === "light"
-              ? {
-                  color: "rgba(55, 55, 55, 0.8)",
-                }
-              : {
-                  color: "rgba(251, 251, 251, 0.4)",
-                }
-          }
-        />
-      ),
+      label:
+        colorMode === "light" ? (
+          <SunIcon
+            style={{ fontSize: 30 }}
+            sx={
+              colorMode === "light"
+                ? {
+                    color: "rgba(55, 55, 55, 0.8)",
+                  }
+                : {
+                    color: "rgba(251, 251, 251, 0.4)",
+                  }
+            }
+          />
+        ) : (
+          <SunDarkIcon
+            style={{ fontSize: 30 }}
+            sx={
+              colorMode === "light"
+                ? {
+                    color: "rgba(55, 55, 55, 0.8)",
+                  }
+                : {
+                    color: "rgba(251, 251, 251, 0.4)",
+                  }
+            }
+          />
+        ),
 
       selectedBackgroundColor: "rgba(216, 238, 255, 1)",
       unSelectedBackgroundColor: "rgba(27, 106, 156, 1) ",
@@ -31,20 +49,34 @@ function ToggleDarkMode() {
       index: 0,
     },
     {
-      label: (
-        <BedtimeOutlinedIcon
-          style={{ fontSize: 30 }}
-          sx={
-            colorMode === "light"
-              ? {
-                  color: "rgba(55, 55, 55, 0.8)",
-                }
-              : {
-                  color: "rgba(251, 251, 251, 0.8)",
-                }
-          }
-        />
-      ),
+      label:
+        colorMode === "light" ? (
+          <MoonIcon
+            style={{ fontSize: 30 }}
+            sx={
+              colorMode === "light"
+                ? {
+                    color: "rgba(55, 55, 55, 0.8)",
+                  }
+                : {
+                    color: "rgba(251, 251, 251, 0.8)",
+                  }
+            }
+          />
+        ) : (
+          <MoonDarkIcon
+            style={{ fontSize: 30 }}
+            sx={
+              colorMode === "light"
+                ? {
+                    color: "rgba(55, 55, 55, 0.8)",
+                  }
+                : {
+                    color: "rgba(251, 251, 251, 0.8)",
+                  }
+            }
+          />
+        ),
 
       selectedBackgroundColor: "rgba(0, 54, 97, 1)",
       unSelectedBackgroundColor: "#A9DCFD",

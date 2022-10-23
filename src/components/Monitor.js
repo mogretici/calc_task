@@ -25,6 +25,7 @@ function Monitor({ colorMode }) {
           <VStack justifyContent={"flex-end"} h={270}>
             <HStack justifyContent={"flex-end"}>
               <Text
+                fontFamily={"Poppins, sans-serif"}
                 fontSize={22}
                 fontWeight={500}
                 color={
@@ -53,10 +54,19 @@ function Monitor({ colorMode }) {
                   : "rgba(251, 251, 251, 1)"
               }
             >
-              <Text fontSize={26} fontWeight={600} alignSelf={"center"}>
+              <Text
+                fontSize={26}
+                fontWeight={600}
+                alignSelf={"center"}
+                fontFamily={"Poppins, sans-serif"}
+              >
                 =
               </Text>
-              <Text fontSize={40} fontWeight={600}>
+              <Text
+                fontSize={40}
+                fontWeight={600}
+                fontFamily={"Poppins, sans-serif"}
+              >
                 {result.toString().length > 5
                   ? parseFloat(result).toPrecision(5)
                   : parseFloat(result)}
